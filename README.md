@@ -50,6 +50,13 @@ A React, Typescript and Redux toolkit dashboard for managing users with features
 - Click user to fetch full details
 - Modal opened via Redux-managed component slot
 
+### Unit Test
+
+- Verify that key UI components render as expected.
+- Confirm that component props are handled correctly.
+- Validate input interaction and conditional UI behavior.
+- Ensure code reliability and prevent regressions.
+
 ### Sidebar Navigation
 
 - Responsive sidebar with icons
@@ -72,6 +79,9 @@ src/
 ├── utils/
 │   ├── retry.ts            # global retry handler
 │   ├── user-search.ts      # fuzzy search function
+│   ├── __tests__/
+│   │   ├── user-card.test.tsx
+│   │   └── search-input.test.tsx
 ```
 
 ## Running Locally
@@ -95,6 +105,18 @@ yarn install
 yarn start
 ```
 
+4. Test the app
+
+```bash
+yarn test
+```
+
+5. Build the app
+
+```bash
+yarn build
+```
+
 ## Notes
 
 - You must configure your Redux API slice to fetch users from your backend or mock server.
@@ -112,5 +134,5 @@ yarn start
 
 ## Credits
 
-Crafted by Boluwatife
+Engineered by Boluwatife
 A test Build for Infinion
