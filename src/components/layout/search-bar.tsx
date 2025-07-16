@@ -44,7 +44,7 @@ const SearchInput: React.FC = () => {
             matchedUsers.map((user) => (
               <div
                 key={user.id}
-                onClick={() => handleSelect(user.id)}
+                onMouseDown={() => handleSelect(user.id)}
                 className="px-4 py-2 hover:bg-zinc-700 cursor-pointer flex gap-3 items-center"
               >
                 <img

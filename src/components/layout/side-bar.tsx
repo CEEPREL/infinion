@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom"; // ✅ for route detection
 import { ThemeToggle } from "../ui/buttons/theme-toggle";
 import Notification from "../user/notification";
 import Profile from "../user/profile";
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   return (
@@ -25,7 +25,7 @@ export const Sidebar: React.FC = () => {
         <SidebarContent onLinkClick={() => setIsOpen(false)} />
       </div>
 
-      {/* Overlay when sidebar is open (on mobile) */}
+      {/* Overlay for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
@@ -35,8 +35,6 @@ export const Sidebar: React.FC = () => {
     </>
   );
 };
-
-//==== Side-bar item  ====
 
 type SidebarProps = {
   onLinkClick?: () => void;
@@ -54,27 +52,28 @@ export const SidebarContent: React.FC<SidebarProps> = ({ onLinkClick }) => {
   return (
     <div className="flex h-full flex-col justify-between px-4 py-6">
       <div>
-        <div className="mb-6 px-4">
+        <a href="/" className="mb-6 px-4 cursor-pointer">
           <img alt="Logo" src="/logo.svg" className="size-16" />
-        </div>
+        </a>
         <ul className="space-y-1">
           {navItems.map((item) => (
             <NavItem key={item.label} {...item} onClick={onLinkClick} />
           ))}
         </ul>
       </div>
+
       <div className="flex flex-row items-center gap-4">
         <span className="md:hidden flex flex-row gap-2">
           <Notification />
           <Profile />
         </span>
-
         <ThemeToggle />
       </div>
     </div>
   );
 };
 
+// === NavItem with active link highlight ===
 type Props = {
   label: string;
   href: string;
@@ -83,6 +82,9 @@ type Props = {
 };
 
 export const NavItem: React.FC<Props> = ({ label, href, src, onClick }) => {
+  const location = useLocation();
+  const isActive = location.pathname === href;
+
   return (
     <li>
       <a
@@ -91,7 +93,12 @@ export const NavItem: React.FC<Props> = ({ label, href, src, onClick }) => {
           console.log(`${label} clicked`);
           if (onClick) onClick();
         }}
-        className="flex items-center px-2 py-2 text-sm font-medium text-gray-500 hover:bg-hover hover:border-s-4 hover:border-[#3B82F6] hover:text-gray-300 transition-all duration-200"
+        className={`flex items-center px-2 py-2 text-sm font-medium transition-all duration-200
+          ${
+            isActive
+              ? "bg-hover border-s-4 border-[#3B82F6] text-gray-300"
+              : "text-gray-500 hover:bg-hover hover:border-s-4 hover:border-[#3B82F6] hover:text-gray-300"
+          }`}
       >
         <img src={src} alt={label} className="w-5 h-5" />
         <span className="pl-4">{label}</span>
@@ -100,7 +107,7 @@ export const NavItem: React.FC<Props> = ({ label, href, src, onClick }) => {
   );
 };
 
-//====Hamburger Menu for mobile====
+// === Hamburger for mobile ===
 type HamburgerProps = {
   toggle: () => void;
   isOpen: boolean;

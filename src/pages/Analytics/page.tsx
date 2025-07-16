@@ -1,7 +1,12 @@
 import React from "react";
+import FeatureUnavailable from "../../components/ui/error/unavailable";
 
-function page() {
-  return <div>page</div>;
+function Analytics() {
+  return (
+    <div>
+      <FeatureUnavailable />
+    </div>
+  );
 }
 
-export default page;
+export default Analytics;

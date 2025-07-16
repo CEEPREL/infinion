@@ -1,4 +1,3 @@
-// pages/users/UserGrid.tsx
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
@@ -16,11 +15,9 @@ import UserCardSkeleton from "../../components/user/user-card-skeletal";
 const CARD_HEIGHT = 310;
 const GAP = 16;
 
-// Breakpoints for screen widths
 const BREAKPOINTS = {
-  desktop: 1024, // Screens >= 1024px => Desktop layout with 3 columns
-  tablet: 768, // Screens >= 766px and < 1024px => Tablet layout with 2 columns
-  mobile: 0, // Screens < 766px => Mobile layout with 1 column
+  desktop: 1024,
+  tablet: 768,
 };
 
 const UserGrid = () => {
@@ -50,6 +47,7 @@ const UserGrid = () => {
 
   return (
     <div className="p-6 flex flex-col items-center gap-4 w-full h-[90vh]">
+      {/* Loading Skeletons */}
       {loading && !timedOut && (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 w-full">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -58,6 +56,7 @@ const UserGrid = () => {
         </div>
       )}
 
+      {/* Error Retry */}
       {timedOut && error && (
         <div className="text-center">
           <p className="text-red-400 mb-4">Error: {error}</p>
@@ -70,35 +69,29 @@ const UserGrid = () => {
         </div>
       )}
 
+      {/* Virtualized User Grid */}
       {!loading && !error && users.length > 0 && (
         <div className="w-full h-full">
           <AutoSizer>
             {({ height, width }: { height: number; width: number }) => {
-              // Default to 1 column and full width for mobile screens
-              let columnCount = 2;
-              let cardWidth = width;
+              let columnCount = 1;
 
               if (width >= BREAKPOINTS.desktop) {
-                // Desktop: 3 columns
                 columnCount = 3;
-                cardWidth = Math.floor(
-                  (width - GAP * (columnCount + 1)) / columnCount
-                );
               } else if (width >= BREAKPOINTS.tablet) {
-                // Tablet: 2 columns with reduced card width
                 columnCount = 2;
-                // Reduce card width by extra 40px to give more spacing/padding
-                cardWidth = 300;
-              } else {
-                // Mobile: 1 column
-                columnCount = 1;
-                cardWidth = width - GAP * 2;
               }
 
-              // Calculate total number of rows needed to display all users
+              // Calculate total gaps between cards (N-1 gaps for N columns)
+              const totalGapWidth = GAP * (columnCount - 1);
+
+              // Calculate card width by subtracting total gaps from width and dividing by columns
+              const cardWidth = Math.floor(
+                (width - totalGapWidth) / columnCount
+              );
+
               const rowCount = Math.ceil(users.length / columnCount);
 
-              // Cell renderer for each card
               const Cell = ({
                 columnIndex,
                 rowIndex,
@@ -117,9 +110,9 @@ const UserGrid = () => {
                   <div
                     style={{
                       ...style,
-                      // Add GAP offset so cards don't touch edges or each other
-                      left: Number(style.left) + GAP,
-                      top: Number(style.top) + GAP,
+                      // Offset left and top to add gaps between cards
+                      left: (cardWidth + GAP) * columnIndex,
+                      top: (CARD_HEIGHT + GAP) * rowIndex,
                       width: cardWidth,
                       height: CARD_HEIGHT,
                     }}
@@ -139,7 +132,6 @@ const UserGrid = () => {
               return (
                 <Grid
                   columnCount={columnCount}
-                  // Add GAP to width and height so spacing is respected
                   columnWidth={cardWidth + GAP}
                   height={height}
                   rowCount={rowCount}

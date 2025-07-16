@@ -1,47 +1,109 @@
-# Getting Started with Create React App
+# Infinion User Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React, Typescript and Redux toolkit dashboard for managing users with features like virtualization, intelligent search, retry handling, light and dark theme and a responsive sidebar navigation. This app emphasizes performance and clean UI, making it suitable for scalable admin tools.
 
-## Available Scripts
+## 📷 Screenshots
 
-In the project directory, you can run:
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.12.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.40.png)
 
-### `yarn start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React (CRA - Create React App)
+- Redux Toolkit – global state management
+- TypeScript – type safety
+- react-window – virtualized user grid
+- react-router-dom – routing
+- Tailwind CSS – modern styling
+- React Skeletons – loading feedback
+- Custom Search Algorithm – user lookup by name/email
+- Reusable Modal System – for user details
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `yarn test`
+### User Listing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Virtualized grid using `react-window` to handle large user lists efficiently
+- Skeleton UI during loading
+- Responsive columns:
 
-### `yarn build`
+### Intelligent Search
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Live search input with dropdown
+- Select from results to open user detail
+- Search helper in `utils/user-search.ts`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Retry Logic
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- If API fails to respond within 10 seconds, a retry button appears
+- Built with `utils/retry.ts` for reusable retry pattern
 
-### `yarn eject`
+### Modal View
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Click user to fetch full details
+- Modal opened via Redux-managed component slot
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sidebar Navigation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Responsive sidebar with icons
+- Hamburger menu on mobile
+- Highlights current route
+- Integrates with `react-router-dom`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Folder Structure
 
-## Learn More
+```
+src/
+├── components/
+│   ├── user/               # UserCard, Skeleton, Profile
+│   ├── ui/                 # Input, Modals, Buttons
+├── pages/
+│   ├── users/              # UserGrid.tsx (main listing page)
+├── redux/
+│   ├── features/           # user-slice, modal-slice
+│   ├── store.ts
+├── utils/
+│   ├── retry.ts            # global retry handler
+│   ├── user-search.ts      # fuzzy search function
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Running Locally
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# infinion
+1. Clone the repo
+
+```bash
+git clone https://github.com/ceeprel/infinion.git
+cd infinion
+```
+
+2. Install dependencies
+
+```bash
+yarn install
+```
+
+3. Run the app
+
+```bash
+yarn start
+```
+
+## Notes
+
+- You must configure your Redux API slice to fetch users from your backend or mock server.
+- The app uses a modal system that takes React nodes. It’s simple, flexible, and doesn’t rely on external libraries.
+- Uses `react-window` for list/grid virtualization (fast rendering of 1000+ items).
+
+## Nice to have Feature
+
+- Pagination support for non-virtualized lists
+- Dark mode persistence with system preference
+- notifications
+- Authentication
+- Authentication and role-based views
+- Unit and integration tests with Jest/Testing Library
+
+## Credits
+
+Crafted by Boluwatife
+A test Build for Infinion
