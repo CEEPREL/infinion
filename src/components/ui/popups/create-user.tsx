@@ -8,7 +8,7 @@ import { closeModal } from "../../../redux/features/modal/modal-slice";
 
 const UserForm = () => {
   const dispatch = useAppDispatch();
-  //destruuctured user state from redux store
+  //destructured user state from redux store
   const { creating, createError } = useAppSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
@@ -16,6 +16,9 @@ const UserForm = () => {
     location: "",
     dob: "",
   });
+
+  //local validation error state
+  const [validationError, setValidationError] = useState("");
 
   //reset error state when component mounts
   useEffect(() => {
@@ -25,18 +28,30 @@ const UserForm = () => {
   //handle change for dynamic form inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setValidationError(""); // clear validation error on input
+  };
+
+  //validate required fields
+  const isValid = () => {
+    if (!formData.name || !formData.location || !formData.dob) {
+      setValidationError("All fields are required.");
+      return false;
+    }
+    return true;
   };
 
   //handle submit for form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!isValid()) return;
+
     try {
       await dispatch(createUser(formData)).unwrap();
 
       dispatch(closeModal());
 
-      window.location.reload();
+      window.location.reload(); // reload after successful save
     } catch (error) {
       console.error("Failed to create user:", error);
     }
@@ -79,7 +94,11 @@ const UserForm = () => {
         />
       </div>
 
-      {createError && (
+      {/* Show validation or create error */}
+      {validationError && (
+        <p className="text-red-500 mb-2">{validationError}</p>
+      )}
+      {createError && !validationError && (
         <p className="text-red-500 mb-2">{createError} — Please retry.</p>
       )}
 
