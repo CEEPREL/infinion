@@ -21,7 +21,7 @@ function UserDirectory() {
           <div className="p-4">
             <Button
               onClick={handleOpen}
-              icon={<img src="/icons/plus.svg" />}
+              icon={<img alt="plus" src="/icons/plus.svg" />}
               className="bg-white text-black border-2 border-black"
             >
               Add New

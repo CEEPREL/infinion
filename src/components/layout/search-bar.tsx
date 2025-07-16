@@ -8,7 +8,7 @@ import SearchBox from "../ui/inputs/search-input";
 
 const SearchInput: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { users, loading, error } = useAppSelector((state) => state.user);
+  const { users, error } = useAppSelector((state) => state.user);
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -39,7 +39,7 @@ const SearchInput: React.FC = () => {
 
       {/* Dropdown Result */}
       {focused && query && (
-        <div className="absolute z-50 bg-zinc-900 text-white w-full rounded-md mt-2 border border-zinc-700 shadow-lg max-h-64 overflow-y-auto">
+        <div className="absolute z-50 bg-white dark:bg-zinc-900 text-white w-full rounded-md mt-2 border border-zinc-700 shadow-lg max-h-64 overflow-y-auto">
           {matchedUsers.length > 0 ? (
             matchedUsers.map((user) => (
               <div

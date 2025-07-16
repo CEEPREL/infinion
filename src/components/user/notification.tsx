@@ -3,7 +3,7 @@ import React from "react";
 function Notification() {
   return (
     <>
-      <img src="/icons/notification-bell.svg" />
+      <img alt="" src="/icons/notification-bell.svg" />
     </>
   );
 }
