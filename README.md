@@ -2,7 +2,7 @@
 
 A React, Typescript and Redux toolkit dashboard for managing users with features like virtualization, intelligent search, retry handling, light and dark theme and a responsive sidebar navigation. This app emphasizes performance and clean UI, making it suitable for scalable admin tools.
 
-## 📷 Screenshots
+## Screenshots
 
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.12.png)
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.40.png)
@@ -10,6 +10,9 @@ A React, Typescript and Redux toolkit dashboard for managing users with features
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.04.33.png)
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.05.03.png)
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-14%20at%2021.28.37.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.27.19.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.27.35.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.36.28.png)
 
 ## Tech Stack
 
