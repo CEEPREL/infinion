@@ -28,13 +28,18 @@ const UserForm = () => {
   };
 
   //handle submit for form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    //dispatch create user action and reset form data
-    //dispatch close modal action and reload page
-    dispatch(createUser(formData));
-    if (!createError) dispatch(closeModal());
-    window.location.reload();
+
+    try {
+      await dispatch(createUser(formData)).unwrap();
+
+      dispatch(closeModal());
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to create user:", error);
+    }
   };
 
   return (
