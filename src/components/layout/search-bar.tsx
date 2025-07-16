@@ -17,8 +17,6 @@ const SearchInput: React.FC = () => {
     : [];
 
   const handleSelect = async (id: string) => {
-    console.log("hi");
-
     if (!error) {
       const result = await dispatch(fetchUserById(id));
       if (fetchUserById.fulfilled.match(result)) {
