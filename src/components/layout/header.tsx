@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="hidden md:flex flex-row items-center justify-between">
       <div className=" w-72">
-        <SearchInput />
+        <SearchInput placeholder="Search" />
       </div>
       <div className="flex flex-row rounded-full gap-4">
         <Notification />

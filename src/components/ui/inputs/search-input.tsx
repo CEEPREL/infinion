@@ -1,15 +1,33 @@
 import React from "react";
 
-const SearchInput: React.FC = () => {
+interface SearchBoxProps {
+  query?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  placeholder?: string;
+}
+
+const SearchBox: React.FC<SearchBoxProps> = ({
+  query,
+  onChange,
+  onFocus,
+  onBlur,
+  placeholder,
+}) => {
   return (
-    <label htmlFor="Search" className="block">
-      <div className="relative">
+    <label htmlFor="Search" className="block relative w-full ">
+      <div className="relative w-full">
         <input
           type="text"
           id="Search"
           name="search"
-          placeholder="Search"
-          className="mt-0.5 pl-8 border-2  py-4 h-10 w-full sm:text-sm dark:border-hover dark:bg-hover rounded-3xl dark:text-white"
+          value={query}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          className="mt-0.5 pl-8 pr-4 border-2 py-4 h-10 w-full sm:text-sm dark:border-hover dark:bg-hover rounded-3xl dark:text-white bg-zinc-900"
         />
 
         <span className="absolute inset-y-0 left-1 grid w-8 place-content-center">
@@ -39,4 +57,4 @@ const SearchInput: React.FC = () => {
   );
 };
 
-export default SearchInput;
+export default SearchBox;

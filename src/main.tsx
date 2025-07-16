@@ -4,6 +4,7 @@ import { RootState } from "./redux/store";
 import App from "./App";
 import Header from "./components/layout/header";
 import UserDirectory from "./components/layout/user-directory";
+import SearchInput from "./components/layout/search-bar";
 
 function Main() {
   const theme = useSelector((state: RootState) => state.theme.mode);
@@ -17,6 +18,7 @@ function Main() {
           <div className="md:w-[85%] w-full dark:bg-dark p-5">
             <Header />
             <UserDirectory />
+            <SearchInput />
             <div className="flex-1 pb-40 overflow-y-auto h-screen">
               <App />
             </div>

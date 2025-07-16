@@ -1,15 +1,18 @@
-// components/ui/cards/UserCard.tsx
 import React from "react";
+import { UserCardProps } from "./types";
 
-interface UserCardProps {
-  name: string;
-  email: string;
-  avatar: string;
-}
-
-const UserCard: React.FC<UserCardProps> = ({ name, email, avatar }) => {
+const UserCard: React.FC<UserCardProps> = ({
+  id,
+  name,
+  email,
+  avatar,
+  onClick,
+}) => {
   return (
-    <div className="bg-zinc-900 rounded-2xl p-6 md:w-60 lg:w-96 w-full h-72 flex flex-col items-center justify-center text-center shadow-md">
+    <div
+      onClick={() => onClick(id)}
+      className="bg-zinc-900 rounded-2xl p-6 w-full h-72 flex flex-col items-center justify-center text-center shadow-md cursor-pointer hover:bg-zinc-800 transition"
+    >
       <img
         src={avatar}
         alt={name}

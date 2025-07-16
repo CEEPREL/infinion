@@ -15,7 +15,7 @@ const initialState: UserState = {
   selectedError: null,
 };
 
-// fetchusers uses RTK createAsyncThunk lifecycle to fetch users from the endpoint
+// fetchusers uses RTK createAsyncThunk lifecycle to fetch all users from the endpoint
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const res = await fetch(
     "https://687124747ca4d06b34b97d3d.mockapi.io/api/userId"
@@ -23,6 +23,7 @@ export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   return (await res.json()) as User[];
 });
 
+// fetchUserById uses RTK createAsyncThunk lifecycle to fetch users by ID from the endpoint
 export const fetchUserById = createAsyncThunk(
   "user/fetchUserById",
   async (id: string, { rejectWithValue }) => {

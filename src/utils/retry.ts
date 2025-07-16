@@ -1,5 +1,10 @@
 import { AppDispatch } from "../redux/store";
-// this is a retry function that takes in a dispatch function and an action function you can use it anywhere in the code
-export const retryAction = (dispatch: AppDispatch, action: any) => {
-  dispatch(action());
+
+// Updated to allow passing an action creator and its payload (like an ID)
+export const retryAction = <T>(
+  dispatch: AppDispatch,
+  actionCreator: (arg: T) => any,
+  payload?: T
+) => {
+  dispatch(actionCreator(payload as T));
 };
