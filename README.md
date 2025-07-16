@@ -6,6 +6,10 @@ A React, Typescript and Redux toolkit dashboard for managing users with features
 
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.12.png)
 ![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.40.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2006.30.52.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.04.33.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-16%20at%2007.05.03.png)
+![Screenshots](https://github.com/CEEPREL/keep-lagos-safe/blob/main/public/Screenshot%202025-07-14%20at%2021.28.37.png)
 
 ## Tech Stack
 
